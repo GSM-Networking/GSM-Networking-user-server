@@ -14,7 +14,7 @@ class Mentor(
     @Column(name = "mentor_id", nullable = false)
     val mentorId: Long,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     val user: User
 )
