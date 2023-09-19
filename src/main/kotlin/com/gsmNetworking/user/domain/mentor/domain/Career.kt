@@ -1,10 +1,15 @@
 package com.gsmNetworking.user.domain.mentor.domain
 
-import com.gsmNetworking.user.domain.user.domain.User
+import org.hibernate.annotations.Cascade
+import org.hibernate.annotations.CascadeType
 import java.time.LocalDateTime
 import javax.persistence.*
 
+/**
+ * 멘토의 경력을 저장하는 Entity 클래스 입니다.
+ */
 @Entity
+@Table(name = "career")
 class Career(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,8 +17,9 @@ class Career(
     var careerId: Long,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    val user: User,
+    @JoinColumn(name = "mentor_id")
+    @Cascade(value = [CascadeType.DELETE]) // 멘토가 삭제될 시에 경력도 삭제 된다.
+    val mentor: Mentor,
 
     @Column(nullable = false)
     val companyName: String,
