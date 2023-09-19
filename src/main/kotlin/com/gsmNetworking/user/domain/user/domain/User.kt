@@ -2,6 +2,9 @@ package com.gsmNetworking.user.domain.user.domain
 
 import javax.persistence.*
 
+/**
+ * 사용자의 정보를 저장하는 Entity 클래스 입니다.
+ */
 @Entity
 @Table(name = "user")
 class User(
