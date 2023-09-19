@@ -25,7 +25,7 @@ class User(
     @Column(nullable = false)
     val phoneNumber: String,
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(nullable = false)
     val snsUrl: String,
 
     @Column(nullable = true)
