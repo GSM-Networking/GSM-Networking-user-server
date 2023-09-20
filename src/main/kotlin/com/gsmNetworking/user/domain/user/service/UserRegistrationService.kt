@@ -5,7 +5,6 @@ import com.gsmNetworking.user.domain.user.dto.UserRegistrationDto
 import com.gsmNetworking.user.domain.user.repository.UserRepository
 import com.gsmNetworking.user.global.exception.ExpectedException
 import org.springframework.http.HttpStatus
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
