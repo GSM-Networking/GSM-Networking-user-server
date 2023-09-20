@@ -55,9 +55,6 @@ dependencies {
 	testImplementation("io.kotest:kotest-assertions-core-jvm:4.4.3")
 	implementation("io.kotest:kotest-extensions-spring:4.4.3")
 	testImplementation("io.mockk:mockk:1.12.0")
-
-	/* security */
-	implementation("org.springframework.boot:spring-boot-starter-security")
 }
 
 tasks.withType<KotlinCompile> {
