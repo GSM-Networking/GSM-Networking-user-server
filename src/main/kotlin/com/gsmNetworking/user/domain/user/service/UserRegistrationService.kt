@@ -5,15 +5,13 @@ import com.gsmNetworking.user.domain.user.dto.UserRegistrationDto
 import com.gsmNetworking.user.domain.user.repository.UserRepository
 import com.gsmNetworking.user.global.exception.ExpectedException
 import org.springframework.http.HttpStatus
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional(rollbackFor = [Exception::class])
 class UserRegistrationService(
-    private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder
+    private val userRepository: UserRepository
 ) {
 
     /**
@@ -24,12 +22,11 @@ class UserRegistrationService(
      */
     fun execute(dto: UserRegistrationDto): User {
         validateExistUserByPhoneNumber(dto.phoneNumber)
-        val encodedPhoneNumber = passwordEncoder.encode(dto.phoneNumber)
         val user = User(
             name = dto.name,
             generation = dto.generation,
             email = dto.email,
-            phoneNumber = encodedPhoneNumber,
+            phoneNumber = dto.phoneNumber,
             snsUrl = dto.snsUrl,
             profileUrl = dto.profileUrl
         )
