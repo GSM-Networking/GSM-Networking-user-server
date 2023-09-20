@@ -1,5 +1,6 @@
 package com.gsmNetworking.user.domain.user.domain
 
+import com.gsmNetworking.user.domain.user.util.EncryptConverter
 import javax.persistence.*
 
 /**
@@ -17,6 +18,7 @@ class User(
     @Column(nullable = false, unique = true)
     val email: String,
 
+    @Convert(converter = EncryptConverter::class)
     @Column(nullable = false, unique = true)
     val phoneNumber: String,
 
