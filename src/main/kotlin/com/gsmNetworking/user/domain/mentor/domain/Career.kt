@@ -2,7 +2,7 @@ package com.gsmNetworking.user.domain.mentor.domain
 
 import org.hibernate.annotations.Cascade
 import org.hibernate.annotations.CascadeType
-import java.time.LocalDateTime
+import java.time.LocalDate
 import javax.persistence.*
 
 /**
@@ -11,11 +11,6 @@ import javax.persistence.*
 @Entity
 @Table(name = "career")
 class Career(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "career_id", nullable = false)
-    var careerId: Long,
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mentor_id")
     @Cascade(value = [CascadeType.DELETE]) // 멘토가 삭제될 시에 경력도 삭제 된다.
@@ -31,11 +26,16 @@ class Career(
     val position: String,
 
     @Column(nullable = false)
-    val startDate: LocalDateTime,
+    val startDate: LocalDate,
 
     @Column(nullable = false)
-    val endDate: LocalDateTime,
+    val endDate: LocalDate,
 
     @Column(nullable = false)
     val isWorking: Boolean
-)
+) {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val careerId: Long = 0
+
+}

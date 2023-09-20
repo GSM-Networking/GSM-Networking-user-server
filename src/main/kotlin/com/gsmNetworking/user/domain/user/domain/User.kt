@@ -8,26 +8,26 @@ import javax.persistence.*
 @Entity
 @Table(name = "user")
 class User(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
-    val userId: Long,
-
     @Column(nullable = false)
     val name: String,
 
     @Column(nullable = false)
     val generation: Int,
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     val email: String,
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     val phoneNumber: String,
 
-    @Column(nullable = false)
-    val snsUrl: String,
+    @Column(nullable = true)
+    val snsUrl: String?,
 
     @Column(nullable = true)
     val profileUrl: String?
-)
+) {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val userId: Long = 0
+
+}
