@@ -23,6 +23,7 @@ class UserRegistrationService(
     fun execute(dto: UserRegistrationDto): User {
         validateExistUserByPhoneNumber(dto.phoneNumber)
         val user = User(
+            userId = 0,
             name = dto.name,
             generation = dto.generation,
             email = dto.email,
