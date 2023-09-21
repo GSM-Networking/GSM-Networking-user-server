@@ -1,5 +1,6 @@
 package com.gsmNetworking.user.domain.user.domain
 
+import com.gsmNetworking.user.domain.user.converter.EncryptConverter
 import javax.persistence.*
 
 /**
@@ -8,9 +9,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "user")
 class User(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val userId: Long,
 
     @Column(nullable = false)
@@ -19,14 +18,15 @@ class User(
     @Column(nullable = false)
     val generation: Int,
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     val email: String,
 
-    @Column(nullable = false)
+    @Convert(converter = EncryptConverter::class)
+    @Column(nullable = false, unique = true)
     val phoneNumber: String,
 
-    @Column(nullable = false)
-    val snsUrl: String,
+    @Column(nullable = true)
+    val snsUrl: String?,
 
     @Column(nullable = true)
     val profileUrl: String?

@@ -31,22 +31,15 @@ repositories {
 	mavenCentral()
 }
 
-dependencyManagement {
-	dependencies {
-		dependencySet("io.kotest:5.7.2") {
-			entry("io.kotest:kotest-runner-junit5-jvm")
-			entry("io.kotest:kotest-assertions-core-jvm")
-			entry("io.kotest:kotest-extensions-spring")
-		}
-	}
-}
-
 dependencies {
 	/* spring app */
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+	/** validation **/
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 
 	/** jpa **/
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -58,9 +51,9 @@ dependencies {
 
 	/* test */
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("io.kotest:kotest-runner-junit5-jvm")
-	testImplementation("io.kotest:kotest-assertions-core")
-	testImplementation("io.kotest:kotest-extensions-spring")
+	testImplementation("io.kotest:kotest-runner-junit5-jvm:4.4.3")
+	testImplementation("io.kotest:kotest-assertions-core-jvm:4.4.3")
+	implementation("io.kotest:kotest-extensions-spring:4.4.3")
 	testImplementation("io.mockk:mockk:1.12.0")
 }
 

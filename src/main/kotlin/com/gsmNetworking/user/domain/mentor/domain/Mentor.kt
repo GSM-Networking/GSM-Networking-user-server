@@ -9,9 +9,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "mentor")
 class Mentor(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "mentor_id", nullable = false)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val mentorId: Long,
 
     @OneToOne(fetch = FetchType.LAZY)
