@@ -1,6 +1,6 @@
-package com.gsmNetworking.user.domain.user.util
+package com.gsmNetworking.user.domain.user.converter
 
-import com.gsmNetworking.user.global.security.encrypt.EncryptUtil
+import com.gsmNetworking.user.global.security.encrypt.EncryptManager
 import org.springframework.stereotype.Component
 import javax.persistence.AttributeConverter
 import javax.persistence.Converter
@@ -8,17 +8,17 @@ import javax.persistence.Converter
 @Converter
 @Component
 class EncryptConverter(
-    private val encryptUtil: EncryptUtil
+    private val encryptManager: EncryptManager
 ): AttributeConverter<String, String> {
 
     override fun convertToDatabaseColumn(attribute: String?): String? {
         if (attribute == null) return null
-        return encryptUtil.encrypt(attribute)
+        return encryptManager.encrypt(attribute)
     }
 
     override fun convertToEntityAttribute(dbData: String?): String? {
         if (dbData == null) return null
-        return encryptUtil.decrypt(dbData)
+        return encryptManager.decrypt(dbData)
     }
 
 }
